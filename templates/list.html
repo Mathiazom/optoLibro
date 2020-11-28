@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/liststyles.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/statusstyles.css')}}">
+</head>
+
+
+<div class="row">
+  <div class="col text-right">
+    {% if current_user.is_authenticated %}
+      <h5><span class="mr-3">{{current_user.username}}</span><a href="/logout" class="text-secondary">Logg ut</a></h5>
+    {% else %}
+      <h5><a href="/login" class="text-secondary">Logg inn</a></h5>
+      <h5><a href="/register" class="text-secondary">Registrer</a></h5>
+    {% endif %}
+  </div>
+</div>
+
+<h1>Ønskeliste 2020</h1>
+
+<br>
+
+{% with show_status = current_user.is_authenticated %}
+  {% include 'book_list.html' %}
+{% endwith %}
+
+{% endblock %}

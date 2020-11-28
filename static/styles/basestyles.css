@@ -1,0 +1,24 @@
+body{
+  background: #fdfdfd;
+}
+
+.slim-container{
+  max-width: 500px;
+}
+
+.text-field {
+  border: 2px solid #eee;
+  padding: 10px 15px;
+}
+
+button, .button{
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.divider{
+  height: 2px;
+  background: #21212121;
+  margin: 14px 0;
+}

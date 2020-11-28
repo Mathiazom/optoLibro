@@ -1,0 +1,29 @@
+blockquote {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 1em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  padding-right: 0.8em;
+  border-left: 5px solid #eee;
+  margin-bottom: 1.5rem;
+}
+
+img {
+  max-height: 250px;
+}
+
+.fulfilled{
+  -webkit-filter: grayscale(100%)
+}
+
+.fulfilled img {
+  color: #212121;
+  height: 80px;
+  border: none;
+  margin-right: 10px;
+}
+
+.reset-fulfilled {
+  font-size: 14px;
+}

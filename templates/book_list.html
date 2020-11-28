@@ -1,0 +1,8 @@
+{% for b in books %}
+  {% with book = b %}
+    {% include 'book_entry.html' %}
+    {% if not loop.last %}
+    <div class="invisible divider"></div>
+    {% endif %}
+  {% endwith %}
+{% endfor %}

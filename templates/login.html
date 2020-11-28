@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="mx-auto slim-container">
+
+  <h2>Logg inn</h2>
+
+  {% with action="Logg inn" %}
+    {% include "user_form_module.html" %}
+  {% endwith %}
+
+  <p>Har du ikke en bruker? <a href = "{{url_for('register') }}">Registrer deg her</a></p>
+
+</div>
+
+{% endblock %}

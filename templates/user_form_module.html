@@ -1,0 +1,20 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/formstyles.css')}}">
+</head>
+
+<br>
+
+<form action="" method = "POST" >
+    <h6><label class="mb-0" for="username">Brukernavn</label></h6>
+    <input class="mb-3 w-100 text-field rounded" type="text" name = "username" />
+    <h6><label class="mb-0" for="password">Passord</label></h6>
+    <input class="mb-4 w-100 text-field rounded" type = "password" name = "password" />
+    {% if action == "Registrer" %}
+      <h6><label class="mb-0" for="password">Bekreft passord</label></h6>
+      <input class="mb-4 w-100 text-field rounded" type = "password" name = "confirm_password" />
+    {% endif %}
+    <br>
+    <input class="w-100 bg-primary text-light button rounded" type = "submit" value = "{{action}}" />
+</form>
+
+<br>
