@@ -5,7 +5,8 @@ from book_handler import fetch_books
 from models import db, login, UserModel, BookModel
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///optolibro_data'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'xyz'
 
