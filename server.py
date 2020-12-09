@@ -20,7 +20,7 @@ def create_table():
 
 @app.route("/")
 def list():
-    books = BookModel.query.all()
+    books = BookModel.query.order_by(BookModel.ordinal.asc()).all()
     return render_template("list.html", books=books)
 
 @app.route("/fetch")
@@ -33,13 +33,13 @@ def fetch():
         existing_book = BookModel.query.filter_by(name=b[0]).first()
 
         if(existing_book):
-            existing_book.cardinal = i+1
+            existing_book.ordinal = i+1
             existing_book.author = b[1]
             existing_book.url = b[2]
             existing_book.img_url = b[3]
             existing_book.description = b[4][:500]
         else:
-            book = BookModel(cardinal=i+1,name=b[0],author=b[1],url=b[2],img_url=b[3],description=b[4][:500])
+            book = BookModel(ordinal=i+1,name=b[0],author=b[1],url=b[2],img_url=b[3],description=b[4][:500])
             db.session.add(book)
 
         db.session.commit()

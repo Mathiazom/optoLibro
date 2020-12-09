@@ -2,22 +2,21 @@
 
   {% if not show_status or not book.fulfilled %}
 
+    <div class="card pl-2 pr-2">
+      <div class="card-body">
+        <img class="rounded mt-2 mb-2" src="{{book.img_url}}"/>
+        <h1 class="mt-2">{{book.ordinal}}. {{book.name}}</h1>
+        <p class="mb-0">{{book.author}}</p>
+        <a href="{{book.url}}" target="_blank">{{book.url}}</a>
+        <blockquote class="mt-4">{{book.description | safe }}</blockquote>
 
-  <div class="card pl-2 pr-2">
-    <div class="card-body">
-      <img class="rounded mt-2 mb-2" src="{{book.img_url}}"/>
-      <h1 class="mt-2">{{book.cardinal}}. {{book.name}}</h1>
-      <p class="mb-0">{{book.author}}</p>
-      <a href="{{book.url}}" target="_blank">{{book.url}}</a>
-      <blockquote class="mt-4">{{book.description | safe }}</blockquote>
-
-      {% if show_status %}
-      <form action="/fulfill?book_id={{book.id}}" method="post">
-        <input class="button text-light bg-primary" type="submit" value="Merk som oppfylt" />
-      </form>
-      {% endif %}
+        {% if show_status %}
+        <form action="/fulfill?book_id={{book.id}}" method="post">
+          <input class="button text-light bg-primary" type="submit" value="Merk som oppfylt" />
+        </form>
+        {% endif %}
+      </div>
     </div>
-  </div>
 
   {% elif show_status %}
 
@@ -25,7 +24,7 @@
       <div class="card-body">
         <p>Oppfylt</p>
         <img class="rounded mt-2 mb-2" src="{{book.img_url}}"/>
-        <span>{{book.cardinal}}. {{book.name}}</span>
+        <span>{{book.ordinal}}. {{book.name}}</span>
         <form class="m-0 mt-2 d-block d-sm-none" action="/fulfill?book_id={{book.id}}&reset=True" method="post">
           <input class="reset-fulfilled button" type="submit" value="Merk som ikke oppfylt" />
         </form>
@@ -34,7 +33,6 @@
         </form>
       </div>
     </div>
-
 
   {% endif %}
 

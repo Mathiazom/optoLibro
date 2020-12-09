@@ -24,10 +24,10 @@ def load_user(id):
 
 
 class BookModel(db.Model):
-    __tablename__ = 'book'
+    __tablename__ = 'books'
 
     id = db.Column(db.Integer, primary_key=True)
-    cardinal = db.Column(db.Integer)
+    ordinal = db.Column(db.Integer)
     fulfilled = db.Column(db.Boolean, default=False)
 
     name = db.Column(db.String(100))
