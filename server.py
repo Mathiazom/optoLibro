@@ -6,9 +6,9 @@ from models import db, login, UserModel, BookModel
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///optolibro_data'
+
+app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'xyz'
 
 login.init_app(app)
 login.login_view = 'login'
