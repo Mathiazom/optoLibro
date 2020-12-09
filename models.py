@@ -8,6 +8,8 @@ db = SQLAlchemy()
 class UserModel(UserMixin, db.Model):
     __tablename__ = 'users'
 
+    super = db.Column(db.Boolean, default=False)
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100))
     password_hash = db.Column(db.String())

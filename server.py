@@ -1,14 +1,23 @@
 import os
 from flask import Flask,request, render_template, redirect
 from flask_login import login_required, current_user, login_user, logout_user
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 from book_handler import fetch_books
 from models import db, login, UserModel, BookModel
+from views import AdminModelView
 
 app = Flask(__name__)
 
 
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+
+admin = Admin(app, name='optolibro',template_mode='bootstrap3')
+admin.add_view(AdminModelView(UserModel, db.session))
+admin.add_view(AdminModelView(BookModel, db.session))
 
 login.init_app(app)
 login.login_view = 'login'
@@ -25,6 +34,9 @@ def list():
 
 @app.route("/fetch")
 def fetch():
+
+    if not (current_user.is_authenticated and current_user.super):
+        return redirect("/")
 
     books = fetch_books()
 
