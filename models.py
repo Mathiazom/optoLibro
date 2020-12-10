@@ -5,12 +5,13 @@ from flask_login import UserMixin, LoginManager
 login = LoginManager()
 db = SQLAlchemy()
 
-class UserModel(UserMixin, db.Model):
-    __tablename__ = 'users'
+class User(UserMixin, db.Model):
+    __tablename__ = 'user'
 
     super = db.Column(db.Boolean, default=False)
 
     id = db.Column(db.Integer, primary_key=True)
+
     username = db.Column(db.String(100))
     password_hash = db.Column(db.String())
 
@@ -22,16 +23,29 @@ class UserModel(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return UserModel.query.get(int(id))
+    return User.query.get(int(id))
 
 
-class BookModel(db.Model):
-    __tablename__ = 'books'
+class List(db.Model):
+    __tablename__ = 'list'
 
     id = db.Column(db.Integer, primary_key=True)
+
+    user_id = db.Column(db.Integer)
+    title = db.Column(db.String(100))
+
+    books = db.relationship("Book", backref="list", cascade='all, delete')
+
+
+class Book(db.Model):
+    __tablename__ = 'book'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    list_id = db.Column(db.Integer, db.ForeignKey('list.id'), nullable=False)
+
     ordinal = db.Column(db.Integer)
     fulfilled = db.Column(db.Boolean, default=False)
-
     name = db.Column(db.String(100))
     author = db.Column(db.String(100))
     url = db.Column(db.String(200))

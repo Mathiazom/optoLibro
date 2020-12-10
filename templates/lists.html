@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/liststyles.css')}}">
+</head>
+
+<h1>Mine lister</h1>
+
+<br>
+
+{% for l in lists %}
+  {% with list = l %}
+    <div class="list-preview">
+      {% include 'list_entry.html' %}
+    </div>
+    {% if not loop.last %}
+    <div class="invisible divider"></div>
+    {% endif %}
+  {% endwith %}
+{% endfor %}
+
+
+{% endblock %}

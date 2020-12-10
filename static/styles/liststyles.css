@@ -27,3 +27,15 @@ img {
 .reset-fulfilled {
   font-size: 14px;
 }
+
+.list-preview img {
+  color: #212121;
+  height: 120px;
+  border: none;
+  margin-right: -30px;
+}
+
+.books-preview-container{
+  overflow:hidden;
+  white-space:nowrap;
+}

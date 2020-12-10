@@ -1,0 +1,10 @@
+<div class="card pl-2 pr-2">
+  <div class="card-body p-3">
+    <h5><a href="/list?id={{list.id}}">{{list.title}}</a></h5>
+    <div class="books-preview-container">
+      {% for b in list.books %}
+        <img style="" class="rounded mt-2 mb-2" src="{{b.img_url}}"/>
+      {% endfor %}
+    </div>
+  </div>
+</div>
